@@ -19,19 +19,10 @@ const gettingPage = (req, res, next) => {
 }
 
 router.use('/', (req, res, next) => {
-    console.log('connected to the root page.')
-    // console.log('method is: '+req.method)
-    // if (req.method == 'GET') {
-    //     console.log('is GET')
-    //     next('route')
-    // } else {
-    //     console.log('is not GET')
-    //     next()
-    // }
-}, (req, res, next)=>{
-    print('smth')
+    print('connected')
+    next('route')
 })
 
-
 router.get('/', gettingPage)
+
 module.exports = router
