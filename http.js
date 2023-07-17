@@ -32,5 +32,6 @@ var logStream = fs.createWriteStream(path.join(__dirname+'access.log'), {
 })
 
 app.use('/new', newpage)
-app.use('/', morgan('dev', {stream: logStream}), root)
+app.use('/', root)
+app.use(morgan('dev', {stream: logStream}))
 app.listen(port)
