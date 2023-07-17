@@ -1,6 +1,6 @@
 const express = require('express')
 const newpage = require('./newpage.js')
-const rootpage = require('./root.js')
+const root = require('./root.js')
 const app = express()
 const router = express.Router()
 const port = 80
@@ -26,5 +26,5 @@ const port = 80
 // )
 
 app.use('/new', newpage)
-app.use('/', rootpage)
+app.use('/', root)
 app.listen(port)
