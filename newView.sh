@@ -1,0 +1,1 @@
+touch ./views/$1
