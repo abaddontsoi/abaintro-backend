@@ -5,9 +5,10 @@ const routerHub = require('./routers/exporter')
 
 app.set('view engine', 'ejs')
 
+app.use('/delete', routerHub.deleteP)
 app.use('/add', routerHub.add)
 app.use('/all', routerHub.listAll)
-app.use('/addok', routerHub.addOK)
+app.use('/success', routerHub.success)
 app.use('/err', routerHub.err)
 app.use('/', routerHub.index)
 app.listen(port)

@@ -9,7 +9,15 @@
     <% for( let index = 0; index < num; index++ ) { %>
         <p>Keyword: <%= blocks[index].Keyword %></p>
         <p>Definition: <%= blocks[index].Definition %></p>
+        <form action="/delete/<%= index %>" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <input type="checkbox" name="confirm" id="item<%= index %>">
+            <input type="submit" value="Delete">
+        </form>
+        <a href="/modify/<%=index%>">Modify</a>
         <hr>
     <% } %>
+
+    <button><a href="/" style="text-decoration: none">Home</a></button>
 </body>
 </html>

@@ -1,35 +1,25 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-var validation = require('./add/validate')
 const fs = require('fs')
-const router = express.Router()
+const router = express()
 
-router.get('/', (req, res)=>{
-    res.render('../views/add')
-})
-
+// to get body data in request
 router.use(bodyParser.json())
 router.use(bodyParser.urlencoded({extended: true}))
-// router.use(express.static('public'))
 
-router.post('/reqAdd', (req, res, next)=>{
-    // conditional routing by data validation
-    if (validation(req.body.Keyword, req.body.Definition)) {
-        // ok
+router.post('/:index', (req, res, next)=> {
+    // determine whether the confirm box is checked
+    if (req.body.confirm == 'on') {
         var db = require('../db/test.json')
-        db.blocks.push(req.body)
+        db.blocks.splice(req.params.index, 1)    
         var data = JSON.stringify(db, null, 4)
         fs.writeFile(__dirname+'/../db/test.json', data, (err) => {
             if (err) throw err;
         })
         res.redirect('/success')
-    }
-    // failed
-    else {
+    } else {
         res.redirect('/err')
     }
-    console.log(req.body)
 })
-
 
 module.exports = router
